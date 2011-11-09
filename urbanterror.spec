@@ -4,28 +4,28 @@
 %define version 4.1.1
 %define oversion 411
 
-%define release %mkrel 1
+%define release %mkrel 2
 
-Summary: Urban Terror is a free multi-player first person shooter
-Name: %{name}
-Version: %{version}
-Release: %{release}
-Source0: http://www.iourt.com/files/%{oname}%{oversion}.zip
-Source1: http://ftp.snt.utwente.nl/pub/games/urbanterror/iourbanterror/source/ioUrbanTerrorSource_2007_12_20.zip
-Source10: %{name}-128.png
-Source11: %{name}-64.png
-Source12: %{name}-32.png
-Source13: %{name}-16.png
-Patch0: urbanterror-4.1.1-q3asm.patch
-Patch1: urbanterror-4.1.1-libcurl.patch
-Patch2: urbanterror-4.1.1-x86_64.patch
-License: GPLv2+
-Group: Games/Arcade
-Url: http://urbanterror.info
-BuildRequires: SDL-devel
-BuildRequires: mesagl-devel
-Requires: %{name}-data = %{version}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Summary:	Urban Terror is a free multi-player first person shooter
+Name:		%{name}
+Version:	%{version}
+Release:	%{release}
+Source0:	http://www.iourt.com/files/%{oname}%{oversion}.zip
+Source1:	http://ftp.snt.utwente.nl/pub/games/urbanterror/iourbanterror/source/ioUrbanTerrorSource_2007_12_20.zip
+Source10:	%{name}-128.png
+Source11:	%{name}-64.png
+Source12:	%{name}-32.png
+Source13:	%{name}-16.png
+Patch0:		urbanterror-4.1.1-q3asm.patch
+Patch1:		urbanterror-4.1.1-libcurl.patch
+Patch2:		urbanterror-4.1.1-x86_64.patch
+License:	GPLv2+
+Group:		Games/Arcade
+Url:		http://urbanterror.info
+BuildRequires:	SDL-devel
+BuildRequires:	mesagl-devel
+Requires:	%{name}-data = %{version}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Urban Terror(TM) is a free multi-player first person shooter developed by 
@@ -40,13 +40,20 @@ unique, enjoyable and addictive game.
 No registration required: Install&play!
 
 %package -n %{name}-data
-Summary: Urban Terror data files (graphics, music, maps etc)
-Requires: %{name} = %{version}
-Group: Games/Arcade
-BuildArch: noarch
+Summary:	Urban Terror data files (graphics, music, maps etc)
+Requires:	%{name} = %{version}
+Group:		Games/Arcade
+License:	Freeware
+BuildArch:	noarch
 
 %description -n %{name}-data
 Data files used to play Urban Terror.
+
+Warning! Read the license for data files carefully.
+
+"Urban Terror is distributed free over the Internet and is covered by the
+Quake 3 SDK licence agreement. The mod files may not be sold [in any form]
+or distributed on physical media unless with permission from iD Software."
 
 %prep
 %setup -q -n %{oname} -c -a 1
@@ -83,7 +90,7 @@ pushd
 
 %__install -d %{buildroot}%{_datadir}/applications
 
-cat > %{buildroot}%{_datadir}/applications/%{name}.desktop << EOF
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=Urban Terror
 Comment=%{summary}
@@ -103,7 +110,7 @@ EOF
 %doc %{oname}/*.txt
 %{_gamesbindir}/%{name}
 %{_gamesbindir}/%{name}-server
-%{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/mandriva-%{name}.desktop
 %{_iconsdir}/hicolor/16x16/apps/%{name}.png
 %{_iconsdir}/hicolor/32x32/apps/%{name}.png
 %{_iconsdir}/hicolor/64x64/apps/%{name}.png
