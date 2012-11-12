@@ -1,0 +1,48 @@
+diff -urN UrbanTerror/ioUrbanTerrorClientSource/code/botlib/l_precomp.c UrbanTerror-patched/ioUrbanTerrorClientSource/code/botlib/l_precomp.c
+--- UrbanTerror/ioUrbanTerrorClientSource/code/botlib/l_precomp.c	2007-10-09 02:47:26.000000000 +1100
++++ UrbanTerror-patched/ioUrbanTerrorClientSource/code/botlib/l_precomp.c	2011-10-20 01:19:27.312178088 +1100
+@@ -951,7 +951,7 @@
+ 		if ((*ptr == '\\' || *ptr == '/') &&
+ 				(*(ptr+1) == '\\' || *(ptr+1) == '/'))
+ 		{
+-			strcpy(ptr, ptr+1);
++			memmove(ptr, ptr+1, strlen(ptr));
+ 		} //end if
+ 		else
+ 		{
+diff -urN UrbanTerror/ioUrbanTerrorClientSource/code/botlib/l_script.c UrbanTerror-patched/ioUrbanTerrorClientSource/code/botlib/l_script.c
+--- UrbanTerror/ioUrbanTerrorClientSource/code/botlib/l_script.c	2007-10-09 02:47:26.000000000 +1100
++++ UrbanTerror-patched/ioUrbanTerrorClientSource/code/botlib/l_script.c	2011-10-20 01:19:27.202178086 +1100
+@@ -1118,7 +1118,7 @@
+ {
+ 	if (*string == '\"')
+ 	{
+-		strcpy(string, string+1);
++		memmove(string, string+1, strlen(string));
+ 	} //end if
+ 	if (string[strlen(string)-1] == '\"')
+ 	{
+diff -urN UrbanTerror/ioUrbanTerrorServerSource/code/botlib/l_precomp.c UrbanTerror-patched/ioUrbanTerrorServerSource/code/botlib/l_precomp.c
+--- UrbanTerror/ioUrbanTerrorServerSource/code/botlib/l_precomp.c	2007-12-03 02:37:34.000000000 +1000
++++ UrbanTerror-patched/ioUrbanTerrorServerSource/code/botlib/l_precomp.c	2011-10-20 01:22:12.606178559 +1100
+@@ -948,7 +948,7 @@
+ 		if ((*ptr == '\\' || *ptr == '/') &&
+ 				(*(ptr+1) == '\\' || *(ptr+1) == '/'))
+ 		{
+-			strcpy(ptr, ptr+1);
++			memmove(ptr, ptr+1, strlen(ptr));
+ 		} //end if
+ 		else
+ 		{
+diff -urN UrbanTerror/ioUrbanTerrorServerSource/code/botlib/l_script.c UrbanTerror-patched/ioUrbanTerrorServerSource/code/botlib/l_script.c
+--- UrbanTerror/ioUrbanTerrorServerSource/code/botlib/l_script.c	2007-11-18 19:57:18.000000000 +1000
++++ UrbanTerror-patched/ioUrbanTerrorServerSource/code/botlib/l_script.c	2011-10-20 01:21:38.119178026 +1100
+@@ -1118,7 +1118,7 @@
+ {
+ 	if (*string == '\"')
+ 	{
+-		strcpy(string, string+1);
++		memmove(string, string+1, strlen(string));
+ 	} //end if
+ 	if (string[strlen(string)-1] == '\"')
+ 	{
