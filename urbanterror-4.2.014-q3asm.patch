@@ -1,0 +1,12 @@
+diff -urN ioq3-for-UrbanTerror-4-release-4.2.014/code/tools/asm/Makefile ioq3-for-UrbanTerror-4-release-4.2.014-patched/code/tools/asm/Makefile
+--- ioq3-for-UrbanTerror-4-release-4.2.014/code/tools/asm/Makefile	2013-07-12 00:54:04.000000000 +1100
++++ ioq3-for-UrbanTerror-4-release-4.2.014-patched/code/tools/asm/Makefile	2013-07-19 21:02:07.494897262 +1100
+@@ -13,7 +13,7 @@
+ endif
+ 
+ CC=gcc
+-Q3ASM_CFLAGS=-O2 -Wall -Werror -fno-strict-aliasing
++Q3ASM_CFLAGS=-O2 -Wall -fno-strict-aliasing
+ 
+ ifeq ($(PLATFORM),darwin)
+   LCC_CFLAGS += -DMACOS_X=1

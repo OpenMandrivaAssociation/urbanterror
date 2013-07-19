@@ -1,31 +1,34 @@
-%define name urbanterror
+%define _enable_debug_packages %{nil}
+%define debug_package %{nil}
+
 %define oname UrbanTerror
-
-%define version 4.1.1
-%define oversion 411
-
-%define release %mkrel 2
+%define oversion 42
+%define majver 4.2
+%define minver 014
 
 Summary:	Urban Terror is a free multi-player first person shooter
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-Source0:	http://www.iourt.com/files/%{oname}%{oversion}.zip
-Source1:	http://ftp.snt.utwente.nl/pub/games/urbanterror/iourbanterror/source/ioUrbanTerrorSource_2007_12_20.zip
+Name:		urbanterror
+Version:	%{majver}.%{minver}
+Release:	1
+License:	GPLv2+
+Group:		Games/Arcade
+Url:		http://urbanterror.info
+Source0:	http://cdn.urbanterror.info/urt/%{oversion}/zips/%{oname}%{oversion}_full%{minver}.zip
+Source1:	https://github.com/Barbatos/ioq3-for-%{oname}-4/archive/ioq3-for-%{oname}-4-release-%{version}.tar.gz
 Source10:	%{name}-128.png
 Source11:	%{name}-64.png
 Source12:	%{name}-32.png
 Source13:	%{name}-16.png
-Patch0:		urbanterror-4.1.1-q3asm.patch
-Patch1:		urbanterror-4.1.1-libcurl.patch
-Patch2:		urbanterror-4.1.1-x86_64.patch
-License:	GPLv2+
-Group:		Games/Arcade
-Url:		http://urbanterror.info
-BuildRequires:	SDL-devel
-BuildRequires:	mesagl-devel
+Patch0:		urbanterror-4.2.014-q3asm.patch
+Patch1:		urbanterror-4.2.014-libcurl.patch
+BuildRequires:	pkgconfig(gl)
+BuildRequires:	pkgconfig(libcurl)
+BuildRequires:	pkgconfig(ogg)
+BuildRequires:	pkgconfig(openal)
+BuildRequires:	pkgconfig(sdl)
+BuildRequires:	pkgconfig(vorbis)
+BuildRequires:	pkgconfig(vorbisfile)
 Requires:	%{name}-data = %{version}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Urban Terror(TM) is a free multi-player first person shooter developed by 
@@ -58,37 +61,36 @@ or distributed on physical media unless with permission from iD Software."
 %prep
 %setup -q -n %{oname} -c -a 1
 %patch0 -p0
-%patch1 -p1
-%patch2 -p1
+%patch1 -p0
 
 %build
-%__mkdir_p build
-pushd ioUrbanTerrorClientSource
-%make DEFAULT_BASEDIR=%{_gamesdatadir}/%{name} USE_CURL=1
-cp build/*/ioUrbanTerror.* ../build/
-pushd
-
-pushd ioUrbanTerrorServerSource
-%make DEFAULT_BASEDIR=%{_gamesdatadir}/%{name} USE_CURL=1
-cp build/*/ioUrTded.* ../build/
-pushd
+mkdir -p build
+pushd ioq3-for-%{oname}-4-release-%{version}
+%make \
+	DEFAULT_BASEDIR=%{_gamesdatadir}/%{name} \
+	USE_CURL=1 \
+	USE_OPENAL=1 \
+	USE_CODEC_VORBIS=1 \
+	BUILD_CLIENT=1 \
+	BUILD_SERVER=1
+cp build/*/*-UrT.* ../build/
+cp build/*/*-UrT-Ded.* ../build/
+popd
 
 %install
-%__rm -rf %{buildroot}
+install -d %{buildroot}%{_gamesbindir}
+cp build/*-UrT-Ded.* %{buildroot}%{_gamesbindir}/%{name}-server
+cp build/*-UrT.* %{buildroot}%{_gamesbindir}/%{name}
 
-%__install -d %{buildroot}%{_gamesbindir}
-%__cp build/ioUrTded.* %{buildroot}%{_gamesbindir}/%{name}-server
-%__cp build/ioUrbanTerror.* %{buildroot}%{_gamesbindir}/%{name}
+install -d %{buildroot}%{_gamesdatadir}/%{name}
+cp -r %{oname}%{oversion}/q3ut4 %{buildroot}%{_gamesdatadir}/%{name}/
 
-%__install -d %{buildroot}%{_gamesdatadir}/%{name}
-%__cp -r %{oname}/q3ut4 %{buildroot}%{_gamesdatadir}/%{name}/
+install -D -m 644 %{SOURCE13} %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+install -D -m 644 %{SOURCE12} %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+install -D -m 644 %{SOURCE11} %{buildroot}%{_iconsdir}/hicolor/64x64/apps/%{name}.png
+install -D -m 644 %{SOURCE10} %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png
 
-%__install -D -m 644 %{SOURCE13} %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
-%__install -D -m 644 %{SOURCE12} %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
-%__install -D -m 644 %{SOURCE11} %{buildroot}%{_iconsdir}/hicolor/64x64/apps/%{name}.png
-%__install -D -m 644 %{SOURCE10} %{buildroot}%{_iconsdir}/hicolor/128x128/apps/%{name}.png
-
-%__install -d %{buildroot}%{_datadir}/applications
+install -d %{buildroot}%{_datadir}/applications
 
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
@@ -102,12 +104,8 @@ StartupNotify=false
 Categories=Game;ArcadeGame;
 EOF
 
-%clean
-%__rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
-%doc %{oname}/*.txt
+%doc %{oname}%{oversion}/q3ut4/*.txt %{oname}%{oversion}/q3ut4/*.doc
 %{_gamesbindir}/%{name}
 %{_gamesbindir}/%{name}-server
 %{_datadir}/applications/mandriva-%{name}.desktop
@@ -117,7 +115,6 @@ EOF
 %{_iconsdir}/hicolor/128x128/apps/%{name}.png
 
 %files -n %{name}-data
-%defattr(-,root,root)
 %dir %{_gamesdatadir}/%{name}/q3ut4
 %{_gamesdatadir}/%{name}/q3ut4/*
 

@@ -1,0 +1,12 @@
+diff -urN ioq3-for-UrbanTerror-4-release-4.2.014/code/client/cl_curl.h ioq3-for-UrbanTerror-4-release-4.2.014-patched/code/client/cl_curl.h
+--- ioq3-for-UrbanTerror-4-release-4.2.014/code/client/cl_curl.h	2013-07-12 00:54:04.000000000 +1100
++++ ioq3-for-UrbanTerror-4-release-4.2.014-patched/code/client/cl_curl.h	2013-07-19 21:00:54.498702822 +1100
+@@ -34,7 +34,7 @@
+ #elif defined(MACOS_X)
+ #define DEFAULT_CURL_LIB "libcurl.dylib"
+ #else
+-#define DEFAULT_CURL_LIB "libcurl.so.3"
++#define DEFAULT_CURL_LIB "libcurl.so.4"
+ #endif
+ 
+ #if USE_LOCAL_HEADERS
