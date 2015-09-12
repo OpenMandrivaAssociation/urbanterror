@@ -9,7 +9,7 @@
 Summary:	Urban Terror is a free multi-player first person shooter
 Name:		urbanterror
 Version:	%{majver}.%{minver}
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://urbanterror.info
