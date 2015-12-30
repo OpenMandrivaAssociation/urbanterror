@@ -4,12 +4,12 @@
 %define oname UrbanTerror
 %define oversion 42
 %define majver 4.2
-%define minver 014
+%define minver 023
 
 Summary:	Urban Terror is a free multi-player first person shooter
 Name:		urbanterror
 Version:	%{majver}.%{minver}
-Release:	3
+Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://urbanterror.info
@@ -19,8 +19,6 @@ Source10:	%{name}-128.png
 Source11:	%{name}-64.png
 Source12:	%{name}-32.png
 Source13:	%{name}-16.png
-Patch0:		urbanterror-4.2.014-q3asm.patch
-Patch1:		urbanterror-4.2.014-libcurl.patch
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(ogg)
@@ -34,7 +32,7 @@ Requires:	%{name}-data = %{version}
 Urban Terror(TM) is a free multi-player first person shooter developed by 
 FrozenSand, that (thanks to the ioquake3-code) does not require Quake III 
 Arena anymore. It is available for Windows, Linux and Macintosh. 
-The current version is 4.1.
+The current version is 4.2.
 
 Urban Terror can be described as a Hollywood tactical shooter; somewhat 
 realism based, but the motto is "fun over realism". This results in a very 
@@ -60,8 +58,7 @@ or distributed on physical media unless with permission from iD Software."
 
 %prep
 %setup -q -n %{oname} -c -a 1
-%patch0 -p0
-%patch1 -p0
+%apply_patches
 
 %build
 mkdir -p build
