@@ -19,6 +19,7 @@ Source10:	%{name}-128.png
 Source11:	%{name}-64.png
 Source12:	%{name}-32.png
 Source13:	%{name}-16.png
+Patch1:		urbanterror-4.2.023-i586.patch
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(ogg)
@@ -63,11 +64,13 @@ or distributed on physical media unless with permission from iD Software."
 %build
 mkdir -p build
 pushd ioq3-for-%{oname}-4-release-%{version}
+
 %make \
 	DEFAULT_BASEDIR=%{_gamesdatadir}/%{name} \
 	USE_CURL=1 \
 	USE_OPENAL=1 \
 	USE_CODEC_VORBIS=1 \
+	V=1 \
 	BUILD_CLIENT=1 \
 	BUILD_SERVER=1
 cp build/*/*-UrT.* ../build/
