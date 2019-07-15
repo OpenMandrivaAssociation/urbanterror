@@ -63,6 +63,9 @@ or distributed on physical media unless with permission from iD Software."
 %apply_patches
 
 %build
+%ifarch %{ix86}
+%global ldflags %{ldflags} -fuse-ld=gold
+%endif
 mkdir -p build
 pushd ioq3-for-%{oname}-4-release-%{version}
 
