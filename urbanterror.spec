@@ -3,8 +3,8 @@
 
 %define oname UrbanTerror
 %define oversion 42
-%define majver 4.2
-%define minver 023
+%define majver 4.3
+%define minver 4
 
 Summary:	Urban Terror is a free multi-player first person shooter
 Name:		urbanterror
