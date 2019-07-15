@@ -2,7 +2,8 @@
 %define debug_package %{nil}
 
 %define oname UrbanTerror
-%define oversion 42
+%define sversion 434
+%define oversion 43
 %define majver 4.3
 %define minver 4
 
@@ -13,7 +14,7 @@ Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://urbanterror.info
-Source0:	http://cdn.urbanterror.info/urt/%{oversion}/zips/%{oname}%{oversion}_full%{minver}.zip
+Source0:	http://cdn.urbanterror.info/urt/%{oversion}/releases/zips/%{oname}%{sversion}_full.zip
 Source1:	https://github.com/Barbatos/ioq3-for-%{oname}-4/archive/ioq3-for-%{oname}-4-release-%{version}.tar.gz
 Source10:	%{name}-128.png
 Source11:	%{name}-64.png
