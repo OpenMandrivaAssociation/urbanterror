@@ -20,7 +20,7 @@ Source10:	%{name}-128.png
 Source11:	%{name}-64.png
 Source12:	%{name}-32.png
 Source13:	%{name}-16.png
-Patch1:		urbanterror-4.2.023-i586.patch
+#Patch1:		urbanterror-4.2.023-i586.patch
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(ogg)
