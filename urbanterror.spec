@@ -2,9 +2,10 @@
 %define debug_package %{nil}
 
 %define oname UrbanTerror
-%define oversion 42
-%define majver 4.2
-%define minver 023
+%define sversion 434
+%define oversion 43
+%define majver 4.3
+%define minver 4
 
 Summary:	Urban Terror is a free multi-player first person shooter
 Name:		urbanterror
@@ -13,13 +14,13 @@ Release:	1
 License:	GPLv2+
 Group:		Games/Arcade
 Url:		http://urbanterror.info
-Source0:	http://cdn.urbanterror.info/urt/%{oversion}/zips/%{oname}%{oversion}_full%{minver}.zip
+Source0:	http://cdn.urbanterror.info/urt/%{oversion}/releases/zips/%{oname}%{sversion}_full.zip
 Source1:	https://github.com/Barbatos/ioq3-for-%{oname}-4/archive/ioq3-for-%{oname}-4-release-%{version}.tar.gz
 Source10:	%{name}-128.png
 Source11:	%{name}-64.png
 Source12:	%{name}-32.png
 Source13:	%{name}-16.png
-Patch1:		urbanterror-4.2.023-i586.patch
+#Patch1:		urbanterror-4.2.023-i586.patch
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(ogg)
