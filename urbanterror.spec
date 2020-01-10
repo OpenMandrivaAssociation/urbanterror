@@ -60,7 +60,7 @@ or distributed on physical media unless with permission from iD Software."
 
 %prep
 %setup -q -n %{oname} -c -a 1
-%apply_patches
+%autopatch -p1
 
 %build
 mkdir -p build
