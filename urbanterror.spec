@@ -85,7 +85,7 @@ cp build/*-UrT-Ded.* %{buildroot}%{_gamesbindir}/%{name}-server
 cp build/*-UrT.* %{buildroot}%{_gamesbindir}/%{name}
 
 install -d %{buildroot}%{_gamesdatadir}/%{name}
-cp -r %{oname}%{oversion}/q3ut4 %{buildroot}%{_gamesdatadir}/%{name}/
+cp -r q3ut4/* %{buildroot}%{_gamesdatadir}/%{name}/
 
 install -D -m 644 %{SOURCE13} %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 install -D -m 644 %{SOURCE12} %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
