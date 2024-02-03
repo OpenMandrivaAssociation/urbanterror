@@ -28,6 +28,7 @@ BuildRequires:	pkgconfig(openal)
 BuildRequires:	pkgconfig(sdl)
 BuildRequires:	pkgconfig(vorbis)
 BuildRequires:	pkgconfig(vorbisfile)
+BuildRequires:	pkgconfig(xxf86vm)
 Requires:	%{name}-data = %{version}
 
 %description
