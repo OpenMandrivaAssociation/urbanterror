@@ -13,7 +13,7 @@ Version:	%{majver}.%{minver}
 Release:	2
 License:	GPLv2+
 Group:		Games/Arcade
-Url:		http://urbanterror.info
+Url:		https://urbanterror.info
 Source0:	http://cdn.urbanterror.info/urt/%{oversion}/releases/zips/%{oname}%{sversion}_full.zip
 Source1:	https://github.com/Barbatos/ioq3-for-%{oname}-4/archive/ioq3-for-%{oname}-4-release-%{version}.tar.gz
 Source10:	%{name}-128.png
